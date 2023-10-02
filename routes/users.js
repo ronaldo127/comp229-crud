@@ -7,4 +7,6 @@ router
   .get('/', userController.find)
   .post('/', userController.save);
 
+router.get('/:_id', userController.find)
+
 module.exports = router;
