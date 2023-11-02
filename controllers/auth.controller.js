@@ -37,9 +37,12 @@ const requireSignin = expressjwt({
     algorithms: ["HS256"],
     userProperty: 'auth'
 })
-const hasAuthorization = (req, res, next) => {
-    const authorized = req.profile && req.auth
-        && req.profile._id == req.auth._id
+const hasAuthorization = async (req, res, next) => {
+    console.log(req.profile)
+    console.log(req.auth)
+    
+    let user = await User.findOne({ "_id": req.auth._id })
+    const authorized = user
     if (!(authorized)) {
         return res.status('403').json({
             error: "User is not authorized"

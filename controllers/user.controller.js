@@ -1,5 +1,9 @@
 let UserModel = require('../models/user.model');
 
+module.exports.hello = (req, res) => {
+    res.json({ message: "hello authorization" })
+}
+
 module.exports.save = async (req, res) => {
     try {
         const user = new UserModel(req.body);
