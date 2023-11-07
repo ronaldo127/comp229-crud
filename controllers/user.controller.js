@@ -26,3 +26,15 @@ module.exports.find = async (req, res) => {
         })
     }
 }
+
+module.exports.delete =  async (req, res) => {
+    try {
+        console.log(req.params)
+        let result = await UserModel.deleteOne(req.params)
+        res.json(result)
+    } catch (err) {
+        return res.status('400').json({
+            error: "Could not find user"
+        })
+    }
+}

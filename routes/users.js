@@ -13,6 +13,12 @@ router.get("/hello",
   authCtrl.hasAuthorization,
   userController.hello)
 
-router.get('/:_id', userController.find)
+router
+  .get('/:_id', userController.find)
+  .delete('/:_id',
+    authCtrl.requireSignin,
+    authCtrl.hasAuthorization,
+    userController.delete
+  )
 
 module.exports = router;
